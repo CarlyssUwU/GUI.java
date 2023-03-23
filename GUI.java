@@ -42,7 +42,27 @@ public class GUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        GUI myGUI = new GUI();
-        myGUI.mainGUI();
+       // GUI myGUI = new GUI();
+       // myGUI.mainGUI();
+        Hub hub1=new Hub();
+        Hub hub2=new Hub();
+        Hub hub3=new Hub();
+        int i=1;
+        Container container1=new Container(1);
+        Container container2= new Container(2);
+        Container container3=new Container (3);
+        container1.setIdentifier(i);
+        hub1.stackContainers(container1.getPriority());
+        i++;
+        hub1.stackContainers(container1.getPriority());
+        container1.setIdentifier(i);
+        hub1.stackContainers(container1.getPriority());
+        i++;
+        container2.setIdentifier(i);
+        hub1.stackContainers(container2.getPriority());
+      for (int j=0; j<3;j++){
+          hub1.stackContainers(container3.getPriority());
+      }
+        System.out.println(hub1.toString());
     }
 }

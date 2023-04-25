@@ -43,6 +43,7 @@ public class GUI extends JFrame {
     private JRadioButton hub1button;
     private JRadioButton hub2button;
     private JRadioButton hub3button;
+    private JButton emptyAllHub;
     Hub hub=new Hub();
     Hub hub2=new Hub();
     Hub hub3=new Hub();
@@ -52,6 +53,18 @@ public class GUI extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         add(mainGUI);
+        emptyAllHub.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                hub.clearHub();
+                hub2.clearHub();
+                hub3.clearHub();
+                textArea1.setText("");
+                tfWeight.setText("");
+                tfIDNumber.setText("");
+                taDescription.setText("Write the description of your container");
+            }
+        });
         showDescription.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -108,21 +121,28 @@ public class GUI extends JFrame {
         unpileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                if (hub1button.isSelected())
-                    for (int i=1; i<=Integer.parseInt(containersNumbertf.getText());i++) {
-                        hub.unstackContainers(Integer.parseInt(tfColumn.getText())-1);
-                        textArea1.setText(hub.showHub());
+                try{
+                    if(Integer.parseInt(tfColumn.getText())>12){
+                    tfColumn.setText("Please write a number between 1 and 12");
                     }
-                if (hub2button.isSelected())
-                    for (int i=1; i<=Integer.parseInt(containersNumbertf.getText());i++) {
-                        hub2.unstackContainers(Integer.parseInt(tfColumn.getText())-1);
-                        textArea1.setText(hub2.showHub());
-                    }
-                if (hub3button.isSelected())
-                    for (int i=1; i<=Integer.parseInt(containersNumbertf.getText());i++) {
-                        hub3.unstackContainers(Integer.parseInt(tfColumn.getText())-1);
-                        textArea1.setText(hub3.showHub());
-                    }
+                    if (hub1button.isSelected())
+                        for (int i=1; i<=Integer.parseInt(containersNumbertf.getText());i++) {
+                            hub.unstackContainers(Integer.parseInt(tfColumn.getText())-1);
+                            textArea1.setText(hub.showHub());
+                        }
+                    if (hub2button.isSelected())
+                        for (int i=1; i<=Integer.parseInt(containersNumbertf.getText());i++) {
+                            hub2.unstackContainers(Integer.parseInt(tfColumn.getText())-1);
+                            textArea1.setText(hub2.showHub());
+                        }
+                    if (hub3button.isSelected())
+                        for (int i=1; i<=Integer.parseInt(containersNumbertf.getText());i++) {
+                            hub3.unstackContainers(Integer.parseInt(tfColumn.getText())-1);
+                            textArea1.setText(hub3.showHub());
+                        }
+                }catch (NumberFormatException nfe){
+                   tfColumn.setText("Please write a number between 1 and 12");
+                }
             }
         });
         showCountry.addActionListener(new ActionListener() {
@@ -226,7 +246,9 @@ public class GUI extends JFrame {
                 hub3.stackContainers(container);
             }
         }
-        else checkN(container,numberOf);
+        else for (int i=1;i<=numberOf;i++){
+            hub2.stackContainers(container);
+        }
     }else if(container.getPriority()==3){
         aux =100;
         if (numberOf>aux){
@@ -237,7 +259,9 @@ public class GUI extends JFrame {
             for (int j=1;j<=aux;j++){
                 hub3.stackContainers(container);
             }
-        }else checkN(container,numberOf);
+        }else for (int i=1;i<=numberOf;i++){
+            hub2.stackContainers(container);
+        }
     }
 }
     public static void main(String[] args) {

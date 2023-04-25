@@ -23,30 +23,33 @@ public class Hub {
                     }
                 }
             }
+
         }
     }
-
-    public Container unstackContainers(int col) {
-        if (col < 0 || col >= containers[0].length) return null;
+    public void unstackContainers(int col) {
         for (int i = 0; i < containers.length; i++) {
             if (containers[i][col] != null) {
-                Container aux = containers[i][col];
                 containers[i][col] = null;
-                return aux;
             }
         }
-        return null;
-    }
 
+    }
+    public void clearHub(){
+        for (int i =0; i<containers.length;i++){
+            for (int j=0;j<containers[i].length;j++){
+                containers[i][j]=null;
+            }
+        }
+    }
     public String showHub() {
         String aux = "";
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i <10; i++) {
             aux += "\n";
-            for (int j = 0; j < 12; j++) {
+            for (int j = 0; j <12; j++) {
                 if (containers[i][j] != null) {
                     aux += containers[i][j].getIdentifier();
                 } else {
-                    aux += "0";
+                    aux += "X";
                 }
                 aux += " ";
             }

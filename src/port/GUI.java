@@ -37,6 +37,8 @@ public class GUI extends JFrame {
     private JRadioButton hub2button;
     private JRadioButton hub3button;
     private JButton emptyAllHub;
+    private JTextField showContainersOf;
+    private JComboBox country2;
     Hub hub=new Hub();
     Hub hub2=new Hub();
     Hub hub3=new Hub();
@@ -64,7 +66,7 @@ public class GUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String description = taDescription.getText();
-                taShowDesc.setText(description+"\n"+cbCountry.getSelectedItem()+"\n the remitent company is: "+tfRemintent.getText()+"\n the receiver company will be: "+tfReceiver.getText()+"\n Was this container checked? "+cbInspection.isSelected());
+                taShowDesc.setText(description+"\n which ID is: "+container.getIdentifier()+"\n has a weight of: "+container.getWeight()+"\n is from: "+cbCountry.getSelectedItem()+"\n with priority: "+container.getPriority()+"\n The sender company is: "+container.getSendingCompany()+"\n the receiver company will be: "+container.getReceiverCompany()+"\n Was this container checked? "+container.getInspected());
             }
         });
         hub1button.addActionListener(new ActionListener() {

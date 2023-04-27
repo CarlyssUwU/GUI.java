@@ -36,8 +36,8 @@ public class Container {
         CountryOfOrigin = countryOfOrigin;
     }
 
-    public boolean isInspected() {
-        return inspected;
+    public boolean getInspected() {
+        return this.inspected;
     }
 
     public void setInspected(boolean inspected) {

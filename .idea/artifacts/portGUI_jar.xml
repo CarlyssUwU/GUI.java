@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="portGUI:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/portGUI_jar</output-path>
+    <root id="archive" name="portGUI.jar">
+      <element id="module-output" name="portGUI" />
+    </root>
+  </artifact>
+</component>

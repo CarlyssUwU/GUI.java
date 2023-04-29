@@ -56,7 +56,6 @@ public class Hub {
         }
         return aux;
     }
-
     public boolean isFulled(Container container) {
         switch (container.getPriority()) {
             case 1:
@@ -79,4 +78,13 @@ public class Hub {
         }
         return false;
     }
+   public int numberOf(String country){
+       int cont=0;
+          for (int i=0;i< containers.length;i++)
+              for (int j=0;j<containers[0].length;j++)
+                  if(containers[i][j]!=null)
+                       if (containers[i][j].getCountryOfOrigin().equals(country))
+                           cont++;
+       return cont;
+   }
 }

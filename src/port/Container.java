@@ -9,15 +9,13 @@ public class Container {
     String receiverCompany;
     int priority;
     public Container(){
-        this.identifier=getIdentifier();
     }
     public int getIdentifier() {
         return this.identifier;
     }
 
-    public void setIdentifier(int identifier) {
-
-        this.identifier = identifier;
+    public void setIdentifier(int id) {
+        this.identifier = id;
     }
 
     public int getWeight() {

@@ -37,12 +37,12 @@ public class GUI extends JFrame {
     private JRadioButton hub2button;
     private JRadioButton hub3button;
     private JButton emptyAllHub;
+    private JButton numberOfContainersButton;
     private JTextField showContainersOf;
-    private JComboBox country2;
+    private JComboBox slctCountryView;
     Hub hub=new Hub();
     Hub hub2=new Hub();
     Hub hub3=new Hub();
-    Container container = new Container();
     public void mainGUI() {
         setTitle("GUI");
         setSize(1375, 730);
@@ -55,7 +55,6 @@ public class GUI extends JFrame {
                 hub.clearHub();
                 hub2.clearHub();
                 hub3.clearHub();
-
                 textArea1.setText("");
                 tfWeight.setText("");
                 tfIDNumber.setText("");
@@ -66,7 +65,15 @@ public class GUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String description = taDescription.getText();
-                taShowDesc.setText(description+"\n which ID is: "+container.getIdentifier()+"\n has a weight of: "+container.getWeight()+"\n is from: "+cbCountry.getSelectedItem()+"\n with priority: "+container.getPriority()+"\n The sender company is: "+container.getSendingCompany()+"\n the receiver company will be: "+container.getReceiverCompany()+"\n Was this container checked? "+container.getInspected());
+                if(a1RadioButton.isSelected())
+                    taShowDesc.setText(description+"\n which ID is: "+tfIDNumber.getText()+"\n has a weight of: "+tfWeight.getText()+"tons\n is from: "+cbCountry.getSelectedItem()+"\n with priority: 1\n The sender company is: "+tfRemintent.getText()+"\n the receiver company will be: "+tfReceiver.getText()+"\n Was this container checked? "+cbInspection.isSelected());
+                else if(a2RadioButton.isSelected())
+                    taShowDesc.setText(description+"\n which ID is: "+tfIDNumber.getText()+"\n has a weight of: "+tfWeight.getText()+"tons\n is from: "+cbCountry.getSelectedItem()+"\n with priority: 2\n The sender company is: "+tfRemintent.getText()+"\n the receiver company will be: "+tfReceiver.getText()+"\n Was this container checked? "+cbInspection.isSelected());
+                else if(a3RadioButton.isSelected())
+                    taShowDesc.setText(description+"\n which ID is: "+tfIDNumber.getText()+"\n has a weight of: "+tfWeight.getText()+"tons\n is from: "+cbCountry.getSelectedItem()+"\n with priority: 3\n The sender company is: "+tfRemintent.getText()+"\n the receiver company will be: "+tfReceiver.getText()+"\n Was this container checked? "+cbInspection.isSelected());
+                else
+                    taShowDesc.setText(description+"\n which ID is: "+tfIDNumber.getText()+"\n has a weight of: "+tfWeight.getText()+"tons\n is from: "+cbCountry.getSelectedItem()+"\n with priority: null \n The sender company is: "+tfRemintent.getText()+"\n the receiver company will be: "+tfReceiver.getText()+"\n Was this container checked? "+cbInspection.isSelected());
+
             }
         });
         hub1button.addActionListener(new ActionListener() {
@@ -90,6 +97,7 @@ public class GUI extends JFrame {
             }
         });
         pileButton.addActionListener(new ActionListener() {
+            final Container container = new Container();
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -105,6 +113,7 @@ public class GUI extends JFrame {
                 }
                 container.setDescription(taDescription.getText());
                 container.setCountryOfOrigin((String) cbCountry.getSelectedItem());
+                container.setInspected(cbInspection.isSelected());
                 if (a1RadioButton.isSelected()) container.setPriority(1);
                 if (a2RadioButton.isSelected()) container.setPriority(2);
                 if (a3RadioButton.isSelected()) container.setPriority(3);
@@ -138,23 +147,26 @@ public class GUI extends JFrame {
                 }
             }
         });
-        cbInspection.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                container.setInspected(cbInspection.isSelected());
-            }
-        });
+       numberOfContainersButton.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               int total=hub.numberOf(String.valueOf(slctCountryView.getSelectedItem()));
+               total+=hub2.numberOf(String.valueOf(slctCountryView.getSelectedItem()));
+               total+=hub3.numberOf(String.valueOf(slctCountryView.getSelectedItem()));
+               showContainersOf.setText(String.valueOf(total));
+           }
+       });
     }
     public void stack(Container container) {
         if(!hub.isFulled(container)) {
             hub.stackContainers(container);
             hub1button.setSelected(true);
             textArea1.setText(hub.showHub());
-       }else if(!hub2.isFulled(container)){
+        }else if(!hub2.isFulled(container)){
             hub2.stackContainers(container);
             hub2button.setSelected(true);
             textArea1.setText(hub2.showHub());
-       }else if (!hub3.isFulled(container)){
+        }else if (!hub3.isFulled(container)){
             hub3.stackContainers(container);
             hub3button.setSelected(true);
             textArea1.setText(hub3.showHub());
@@ -164,7 +176,7 @@ public class GUI extends JFrame {
         }
     }
     public static void main(String[] args) {
-       GUI myGUI = new GUI();
-       myGUI.mainGUI();
+        GUI myGUI = new GUI();
+        myGUI.mainGUI();
     }
 }

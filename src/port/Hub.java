@@ -3,6 +3,7 @@ public class Hub {
     Container[][] containers = new Container[10][12];
 
     public void stackContainers(Container container) {
+        boolean aux=false;
         if (container != null) {
             int priority = container.getPriority();
             if (priority == 1 || priority == 2) {
@@ -10,7 +11,7 @@ public class Hub {
                 for (int i = containers.length - 1; i >= 0; i--) {
                     if (containers[i][column] == null) {
                         containers[i][column] = container;
-                        return;
+                        break;
                     }
                 }
             } else {
@@ -18,8 +19,13 @@ public class Hub {
                     for (int i = containers.length - 1; i >= 0; i--) {
                         if (containers[i][j] == null) {
                             containers[i][j] = container;
-                            return;
+                            aux=true;
+                            break;
                         }
+                    }
+                    if (aux){
+                        aux=false;
+                        break;
                     }
                 }
             }

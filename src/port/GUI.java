@@ -40,6 +40,7 @@ public class GUI extends JFrame {
     private JButton numberOfContainersButton;
     private JTextField showContainersOf;
     private JComboBox slctCountryView;
+    private JButton weightCheck;
 
 
     Hub hub=new Hub();
@@ -163,6 +164,22 @@ public class GUI extends JFrame {
                 total+=hub3.numberOf(String.valueOf(slctCountryView.getSelectedItem()));
                 showContainersOf.setText(String.valueOf(total));
             }
+        });
+        weightCheck.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                        switch (hubID) {
+                            case 1:
+                                JOptionPane.showMessageDialog(mainGUI, hub.checkedWeight(Integer.parseInt(tfWeight.getText()), 1));
+                                break;
+                            case 2:
+                                JOptionPane.showMessageDialog(mainGUI, hub.checkedWeight(Integer.parseInt(tfWeight.getText()), 2));
+                                break;
+                            case 3:
+                                JOptionPane.showMessageDialog(mainGUI, hub.checkedWeight(Integer.parseInt(tfWeight.getText()), 3));
+                                break;
+                        }
+                }
         });
     }
     public void stack(Container container) {

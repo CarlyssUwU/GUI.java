@@ -87,31 +87,10 @@ public class Hub {
     public String checkedWeight(int weight, int hubNumber){
         String aux="";
         switch (hubNumber){
-            case 1:  for(int i=0; i< containers.length;i++) {
+            case 1, 2, 3:  for(int i = 0; i< containers.length; i++) {
                 for (int j = 0; j < containers[0].length; j++) {
-                    if (containers[i][j].getWeight()<=weight){
-                        containers[i][j].setInspected(true);
-                        aux+=containers[i][j].getIdentifier()+"\n"+containers[i][j].getSendingCompany()+"\n"+containers[i][j].getWeight()+"\n"+containers[i][j].getInspected();
-                    }else {
-                        containers[i][j].setInspected(false);
-                        aux+=containers[i][j].getIdentifier()+"\n"+containers[i][j].getSendingCompany()+"\n"+containers[i][j].getWeight()+"\n"+containers[i][j].getInspected();
-                    }
-                }
-            } break;
-            case 2:  for(int i=0; i< containers.length;i++) {
-                for (int j = 0; j < containers[0].length; j++) {
-                    if (containers[i][j].getWeight()<=weight){
-                        containers[i][j].setInspected(true);
-                        aux+=containers[i][j].getIdentifier()+"\n"+containers[i][j].getSendingCompany()+"\n"+containers[i][j].getWeight()+"\n"+containers[i][j].getInspected();
-                    }else {
-                        containers[i][j].setInspected(false);
-                        aux+=containers[i][j].getIdentifier()+"\n"+containers[i][j].getSendingCompany()+"\n"+containers[i][j].getWeight()+"\n"+containers[i][j].getInspected();
-                    }
-                }
-            } break;
-            case 3:  for(int i=0; i< containers.length;i++) {
-                for (int j = 0; j < containers[0].length; j++) {
-                    if (containers[i][j].getWeight()<=weight){
+                    int weight2=containers[i][j].getWeight();
+                    if (weight2<=weight){
                         containers[i][j].setInspected(true);
                         aux+=containers[i][j].getIdentifier()+"\n"+containers[i][j].getSendingCompany()+"\n"+containers[i][j].getWeight()+"\n"+containers[i][j].getInspected();
                     }else {

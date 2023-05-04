@@ -45,6 +45,7 @@ public class GUI extends JFrame {
     Hub hub=new Hub();
     Hub hub2=new Hub();
     Hub hub3=new Hub();
+    int hubID;
     public void mainGUI() {
         setTitle("GUI");
         setSize(1375, 730);
@@ -82,19 +83,26 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if(hub1button.isSelected()){
                     textArea1.setText(hub.showHub());
+                    hubID=1;
                 }
             }
         });
         hub2button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(hub2button.isSelected())textArea1.setText(hub2.showHub());
+                if(hub2button.isSelected()) {
+                    textArea1.setText(hub2.showHub());
+                    hubID=2;
+                }
             }
         });
         hub3button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(hub3button.isSelected())textArea1.setText(hub3.showHub());
+                if(hub3button.isSelected()) {
+                    textArea1.setText(hub3.showHub());
+                    hubID=3;
+                }
             }
         });
         pileButton.addActionListener(new ActionListener() {
